@@ -1,0 +1,86 @@
+# vim-operator-quickrun
+
+**vim-operator-quickrun** is a Vim plugin to provide operators to quickrun in
+a specified range.
+
+This plugin depends on:
+
+* [vim-quickrun](https://github.com/thinca/vim-quickrun)
+* [vim-operator-user](https://github.com/kana/vim-operator-user)
+* [context_filetype.vim](https://github.com/Shougo/context_filetype.vim) (Optional)
+* [vim-textobj-context](https://github.com/osyo-manga/vim-textobj-context) (Optional)
+
+Latest: https://github.com/Jagua/vim-operator-quickrun
+
+
+
+## Install
+
+
+### A) vim-plug
+
+```vim
+Plug 'Jagua/vim-operator-quickrun'
+```
+
+
+### B) NeoBundle
+
+```vim
+NeoBundle 'Jagua/vim-operator-quickrun'
+```
+
+
+
+## Key mappings
+
+**`<Plug>(operator-quickrun-run)`**
+
+operator to quickrun in a specified range.
+
+
+**`<Plug>(operator-quickrun-run-contextually)`**
+
+operator to quickrun in a specified range, which *filetype is automatically set contextually*.
+
+
+## Examples
+
+write the following key mappings to your .vimrc.
+
+```vim
+nmap ;Qr <Plug>(operator-quickrun-run)
+xmap ;Qr <Plug>(operator-quickrun-run)
+nmap ;qr <Plug>(operator-quickrun-run-contextually)
+xmap ;qr <Plug>(operator-quickrun-run-contextually)
+```
+
+
+### A) If you want to run a code block in markdown.
+
+**(require: [context_filetype.vim](https://github.com/Shougo/context_filetype.vim), [vim-textobj-context](https://github.com/osyo-manga/vim-textobj-context))**
+
+	Q. calculate the sum of integers from 1 to 10.
+	
+	First, this is a naive code.
+	
+	```ruby
+	s = 0
+	for i in [*1..10]
+	  s += i
+	end
+	puts s
+	```
+	
+	Next, this is a shorter code.
+	
+	```python
+	print((10 + 1) * 10 / 2)
+	```
+
+
+Typing `;qricx` when a cursor is between \`\`\`ruby and \`\`\`,
+|quickrun| the specified range which filetype is automatically set to `ruby`.
+
+Typing `;qricx` when a cursor is between \`\`\`python and \`\`\`,
+|quickrun| the specified range which filetype is automatically set to `python`.
